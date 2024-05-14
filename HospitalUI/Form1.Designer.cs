@@ -57,6 +57,7 @@
             lstMedicos.Name = "lstMedicos";
             lstMedicos.Size = new Size(436, 156);
             lstMedicos.TabIndex = 0;
+            lstMedicos.SelectedIndexChanged += lstMedicos_SelectedIndexChanged;
             // 
             // grb_pacientes
             // 
@@ -76,6 +77,7 @@
             lstPacientes.Name = "lstPacientes";
             lstPacientes.Size = new Size(460, 156);
             lstPacientes.TabIndex = 0;
+            lstPacientes.SelectedIndexChanged += lstPacientes_SelectedIndexChanged;
             // 
             // btnAtender
             // 
