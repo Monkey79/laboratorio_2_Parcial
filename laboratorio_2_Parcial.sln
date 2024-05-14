@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalLib", "HospitalLib\HospitalLib.csproj", "{5018AE51-9043-4BE8-9A66-17AA9DC45E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalUI", "HospitalUI\HospitalUI.csproj", "{1759F7F5-B590-4901-87C3-967AE7CE96A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HospitalUI", "HospitalUI\HospitalUI.csproj", "{5DDD1642-3958-4313-A444-6678F2ACB7D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{5018AE51-9043-4BE8-9A66-17AA9DC45E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5018AE51-9043-4BE8-9A66-17AA9DC45E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5018AE51-9043-4BE8-9A66-17AA9DC45E26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1759F7F5-B590-4901-87C3-967AE7CE96A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1759F7F5-B590-4901-87C3-967AE7CE96A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1759F7F5-B590-4901-87C3-967AE7CE96A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1759F7F5-B590-4901-87C3-967AE7CE96A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DDD1642-3958-4313-A444-6678F2ACB7D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDD1642-3958-4313-A444-6678F2ACB7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDD1642-3958-4313-A444-6678F2ACB7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDD1642-3958-4313-A444-6678F2ACB7D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
