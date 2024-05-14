@@ -36,7 +36,7 @@ namespace HospitalLib
             }
         }
 
-        public string BarrioRecidencia { get => barrioRecidencia}
+        public string BarrioRecidencia { get => barrioRecidencia; }
 
         internal abstract string FichaExtra();
 
