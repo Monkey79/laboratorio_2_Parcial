@@ -117,6 +117,7 @@
             Controls.Add(grb_persMed);
             Name = "Form1";
             Text = "Mariano DAngelo";
+            Load += Form1_Load;
             grb_persMed.ResumeLayout(false);
             grb_pacientes.ResumeLayout(false);
             ResumeLayout(false);
