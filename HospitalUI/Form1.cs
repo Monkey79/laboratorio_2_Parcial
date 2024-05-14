@@ -1,5 +1,7 @@
 using HospitalLib;
 using System.Diagnostics;
+using System.Text;
+using System.Windows.Forms;
 
 namespace HospitalUI
 {
@@ -12,7 +14,36 @@ namespace HospitalUI
 
         private void btnAtender_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("BTN_ATENDER_CLICK");
+            Debug.WriteLine("BTN_ATENDER_CLICK " + lstMedicos.SelectedIndex);
+            Debug.WriteLine("BTN_ATENDER_CLICK " + lstPacientes.SelectedIndex);
+            Paciente selectedPaciente = null;
+
+            if (lstMedicos.SelectedIndex == -1 || lstPacientes.SelectedIndex == -1) {
+                MessageBox.Show("Debe seleccionar un Medico y un Paciente para poder continuar");
+            }else {
+                selectedPaciente = (Paciente) lstPacientes.SelectedItem;
+
+                RefreshPaciente(selectedPaciente);
+                RefreshListBoxs();
+                ShowSuccesBoxs(selectedPaciente.NombreCompleto);
+            }
+
+        }
+
+        private void RefreshPaciente(Paciente paciente) {
+            paciente.Diagnostico = "paciente curado";
+        }
+        private void RefreshListBoxs() {
+            lstMedicos.SelectedIndex = -1;
+            lstPacientes.SelectedIndex = -1;
+        }
+        private void ShowSuccesBoxs(string nombreComleto) {
+            string titulo = "Atención finalizada";
+            StringBuilder sb = new StringBuilder();
+            sb.Append(DateTime.Now);
+            sb.Append(" se ha atendido a");
+            sb.Append(nombreComleto);
+            MessageBox.Show(sb.ToString(), titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
