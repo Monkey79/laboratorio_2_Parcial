@@ -15,16 +15,25 @@ namespace HospitalLib
             base(nombre, apellido, nacimiento){ 
 
             this.esResidente = esResidente;
+            this.consultas = new List<Consulta>();
         }
 
         internal override string FichaExtra() {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"¿Finalizó residencia? {esResidente}");
             stringBuilder.AppendLine("ATENCIONES:");
-            foreach (Consulta item in consultas){
-                stringBuilder.AppendLine(item.ToString());
+            if(consultas.Count > 0) {
+                foreach (Consulta item in consultas)
+                {
+                    stringBuilder.AppendLine(item.ToString());
+                }
             }
+          
             return stringBuilder.ToString();
+        }
+
+        public string ObtenerFichaExtra() {
+            return FichaExtra(); 
         }
 
     }

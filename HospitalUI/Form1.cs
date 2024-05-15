@@ -7,9 +7,11 @@ namespace HospitalUI
 {
     public partial class Form1 : Form
     {
+        private bool btnAtenderClickied;
         public Form1()
         {
             InitializeComponent();
+            btnAtenderClickied = false;
         }
 
         private void btnAtender_Click(object sender, EventArgs e)
@@ -17,13 +19,11 @@ namespace HospitalUI
             Debug.WriteLine("BTN_ATENDER_CLICK " + lstMedicos.SelectedIndex);
             Debug.WriteLine("BTN_ATENDER_CLICK " + lstPacientes.SelectedIndex);
             Paciente selectedPaciente = null;
+            btnAtenderClickied = true;
 
-            if (lstMedicos.SelectedIndex == -1 || lstPacientes.SelectedIndex == -1)
-            {
+            if (lstMedicos.SelectedIndex == -1 || lstPacientes.SelectedIndex == -1) {
                 MessageBox.Show("Debe seleccionar un Medico y un Paciente para poder continuar", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
+            }else{
                 selectedPaciente = (Paciente)lstPacientes.SelectedItem;
 
                 RefreshPaciente(selectedPaciente);
@@ -33,15 +33,14 @@ namespace HospitalUI
 
         }
 
-        private void RefreshPaciente(Paciente paciente)
-        {
-            paciente.Diagnostico = "paciente curado";
+        private void RefreshPaciente(Paciente paciente) {
+            paciente.Diagnostico = "paciente curado"; //El diagnóstico será "Paciente curado" para todoslos casos.
         }
         private void RefreshListBoxs()
         {
             lstMedicos.SelectedIndex = -1;
             lstPacientes.SelectedIndex = -1;
-        }
+        }        
         private void ShowSuccesBoxs(string nombreComleto)
         {
             string titulo = "Atención finalizada";
@@ -76,9 +75,15 @@ namespace HospitalUI
 
         }
 
-        private void lstMedicos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            rtbInfoMedicos.Text = ((Persona)lstMedicos.SelectedItem).FichaPersonal(null);
+        private void lstMedicos_SelectedIndexChanged(object sender, EventArgs e){
+            //no entendi por que debo enviar una instancia de Persona al metodo FichaPersonal
+            //lo envio null
+            if (!btnAtenderClickied) {
+                Debug.WriteLine("lstMedicos_SelectedIndexChanged ");
+                rtbInfoMedicos.Text = ((Persona)lstMedicos.SelectedItem).FichaPersonal(null);
+                rtbInfoMedicos.Text += ((PersonalMedico)lstMedicos.SelectedItem).ObtenerFichaExtra();
+            }
+            
         }
     }
 }
