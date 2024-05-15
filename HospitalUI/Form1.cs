@@ -14,10 +14,7 @@ namespace HospitalUI
             btnAtenderClickied = false;
         }
 
-        private void btnAtender_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine("BTN_ATENDER_CLICK " + lstMedicos.SelectedIndex);
-            Debug.WriteLine("BTN_ATENDER_CLICK " + lstPacientes.SelectedIndex);
+        private void btnAtender_Click(object sender, EventArgs e) {            
             Paciente selectedPaciente = null;
             btnAtenderClickied = true;
 
