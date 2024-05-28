@@ -23,7 +23,6 @@ namespace HospitalLib
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"¿Finalizó residencia? {esResidente}");
             stringBuilder.AppendLine("ATENCIONES:");
-            Debug.WriteLine("---EL MEDICO TIENE CONSULTAS?----"+this.NombreCompleto+"=="+consultas.Count);
             if (consultas.Count > 0) {
                 foreach (Consulta item in consultas){
                     stringBuilder.AppendLine(item.ToString());
@@ -36,10 +35,8 @@ namespace HospitalLib
             Consulta consulta = new Consulta(DateTime.Now, paciente);
             bool alreadyLoaded = prsMed.consultas.Contains(consulta);
             if (!alreadyLoaded){
-                Debug.WriteLine("---AGREGO CONSULTA AL MEDICO----");
                 prsMed.consultas.Add(consulta);
             }else {
-                Debug.WriteLine("---LA CONSULTA YA EXISTE----");
                 consulta = null;
             }
             return consulta;

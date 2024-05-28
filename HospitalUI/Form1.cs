@@ -75,10 +75,8 @@ namespace HospitalUI
             //(que es internal) segun corresponda
             Persona persona = (PersonalMedico)lstMedicos.SelectedItem;
             if (lstMedicos.SelectedIndex>=0) {
-                Debug.WriteLine("lstMedicos_SelectedIndexChanged ");
                 rtbInfoMedicos.Text = Persona.FichaPersonal(persona);
-            }
-            
+            }            
         }
     }
 }
