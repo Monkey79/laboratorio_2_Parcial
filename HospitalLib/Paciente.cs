@@ -20,6 +20,13 @@ namespace HospitalLib
             return sb.ToString();
         }
 
+        public static bool operator ==(Paciente lhs, Paciente rhs) {
+            return(lhs.NombreCompleto.Equals(rhs.NombreCompleto));
+        }
+        public static bool operator !=(Paciente lhs, Paciente rhs) { 
+            return !(lhs == rhs);
+        }
+
         public string Diagnostico { get => diagnostico; set => diagnostico = value; }
     }
 }

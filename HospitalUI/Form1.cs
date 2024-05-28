@@ -7,39 +7,39 @@ namespace HospitalUI
 {
     public partial class Form1 : Form
     {
-        private bool btnAtenderClickied;
-        public Form1()
-        {
+        public Form1(){
             InitializeComponent();
-            btnAtenderClickied = false;
         }
 
         private void btnAtender_Click(object sender, EventArgs e) {            
             Paciente selectedPaciente = null;
-            btnAtenderClickied = true;
+            PersonalMedico selectedMedico = null;
 
             if (lstMedicos.SelectedIndex == -1 || lstPacientes.SelectedIndex == -1) {
                 MessageBox.Show("Debe seleccionar un Medico y un Paciente para poder continuar", "Error en los datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }else{
                 selectedPaciente = (Paciente)lstPacientes.SelectedItem;
+                selectedMedico = (PersonalMedico) lstMedicos.SelectedItem;
 
-                RefreshPaciente(selectedPaciente);
+                Consulta consulta = CreateAndLoadConsulta(selectedMedico, selectedPaciente);
+                if(consulta != null) {
+                    ShowSuccesBoxs(selectedPaciente.NombreCompleto);
+                }
                 RefreshListBoxs();
-                ShowSuccesBoxs(selectedPaciente.NombreCompleto);
             }
 
         }
 
-        private void RefreshPaciente(Paciente paciente) {
+        private Consulta CreateAndLoadConsulta(PersonalMedico personalMedico ,Paciente paciente) {
             paciente.Diagnostico = "paciente curado"; //El diagnóstico será "Paciente curado" para todoslos casos.
+            Consulta consulta = (personalMedico + paciente);
+            return consulta;
         }
-        private void RefreshListBoxs()
-        {
+        private void RefreshListBoxs() {
             lstMedicos.SelectedIndex = -1;
             lstPacientes.SelectedIndex = -1;
         }        
-        private void ShowSuccesBoxs(string nombreComleto)
-        {
+        private void ShowSuccesBoxs(string nombreComleto) {
             string titulo = "Atención finalizada";
             StringBuilder sb = new StringBuilder();
             sb.Append(DateTime.Now);
@@ -56,29 +56,27 @@ namespace HospitalUI
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
             lstMedicos.Items.Add(new PersonalMedico("Gustavo", "Rivas", new DateTime(1999, 12, 12), false));
             lstMedicos.Items.Add(new PersonalMedico("Lautaro", "Galarza", new DateTime(1951, 11, 12), true));
             lstPacientes.Items.Add(new Paciente("Mathias", "Bustamante", new DateTime(1998, 6, 16), "Tigre"));
             lstPacientes.Items.Add(new Paciente("Lucas", "Ferrini", new DateTime(1989, 1, 21), "DF"));
             lstPacientes.Items.Add(new Paciente("Lucas", "Rodriguez", new DateTime(1912, 12, 12), "LaBoca"));
             lstPacientes.Items.Add(new Paciente("John Jairo", "Trelles", new DateTime(1978, 8, 30), "Medellin"));
-
         }
 
-        private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void lstPacientes_SelectedIndexChanged(object sender, EventArgs e){
 
         }
 
         private void lstMedicos_SelectedIndexChanged(object sender, EventArgs e){
-            //no entendi por que debo enviar una instancia de Persona al metodo FichaPersonal
-            //lo envio null
-            if (!btnAtenderClickied) {
+            //Llamo metodo estatico FichaPersonal y le paso el objeto seleccionado
+            //del list-box de medicos. El metodo FichaPersonal llamara a FichaExtra
+            //(que es internal) segun corresponda
+            Persona persona = (PersonalMedico)lstMedicos.SelectedItem;
+            if (lstMedicos.SelectedIndex>=0) {
                 Debug.WriteLine("lstMedicos_SelectedIndexChanged ");
-                rtbInfoMedicos.Text = ((Persona)lstMedicos.SelectedItem).FichaPersonal(null);
-                rtbInfoMedicos.Text += ((PersonalMedico)lstMedicos.SelectedItem).ObtenerFichaExtra();
+                rtbInfoMedicos.Text = Persona.FichaPersonal(persona);
             }
             
         }

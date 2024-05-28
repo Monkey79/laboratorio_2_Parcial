@@ -40,13 +40,14 @@ namespace HospitalLib
 
         internal abstract string FichaExtra();
 
-        public string FichaPersonal(Persona persona) {
+        //NOTA: Si a un metodo se le pasa una instancia de si mismo -> pensarlo como metodo
+        //statico (metodo de clase)
+        //la clase Persona es ABSTRACTA
+        public static string FichaPersonal(Persona persona) {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(NombreCompleto);
-            sb.AppendLine($"Edad:{Edad}");
-
-            //TODO : {Datos del objeto instanciado} ? VER!!
-            sb.Append(barrioRecidencia);
+            sb.AppendLine(persona.NombreCompleto);
+            sb.AppendLine($"Edad:{persona.Edad}");
+            sb.AppendLine(persona.FichaExtra()); //por polimorfismo se llamara al ficha extra segun corresponda
             return sb.ToString();
         }
 

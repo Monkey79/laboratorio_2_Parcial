@@ -20,6 +20,15 @@ namespace HospitalLib
         public DateTime Fecha{get { return fecha; } }
         public Paciente Paciente { get {  return paciente; } }
 
+        //sobreescribo metodo Equals que es llamado por el metodo Contains de un obj tipo List
+        public override bool Equals(object? obj) {
+            if (obj == null || GetType() != obj.GetType()) {
+                return false;
+            }
+            Consulta consulta = obj as Consulta;
+            return (consulta.fecha.Equals(this.fecha) && (this.paciente == consulta.paciente));
+        }
+
         public override string ToString() {
             StringBuilder sb =  new StringBuilder();
             sb.Append(Fecha);
